@@ -4,11 +4,14 @@ import { fontFamily } from "tailwindcss/defaultTheme"
 /** @type {import("tailwindcss").Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
+  content: ["app/**/*.{ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans]
+        sans: [
+          "var(--font-sans)",
+          ...fontFamily.sans
+        ]
       }
     }
   }
@@ -16,20 +19,13 @@ module.exports = {
 
 const config = {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}"
-  ],
+  content: ["./app/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px"
-      }
+      screens: { "2xl": "1400px" }
     },
     extend: {
       keyframes: {

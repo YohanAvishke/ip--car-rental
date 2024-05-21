@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Playlist } from "@/lib/playlists"
+import { cn } from "@/app/lib/utils"
+import { Button } from "@/app/components/ui/shadcn/button"
+import { ScrollArea } from "@/app/components/ui/shadcn/scroll-area"
+import { Playlist } from "@/app/lib/playlists"
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   playlists: Playlist[]

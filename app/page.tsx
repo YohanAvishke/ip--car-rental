@@ -1,21 +1,21 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import { PlusCircledIcon } from "@radix-ui/react-icons"
-import { Button } from "@/components/ui/button"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
+import { Button } from "@/app/components/ui/shadcn/button"
+import { ScrollArea, ScrollBar } from "@/app/components/ui/shadcn/scroll-area"
+import { Separator } from "@/app/components/ui/shadcn/separator"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger
-} from "@/components/ui/tabs"
-import { AlbumArtwork } from "@/components/ui/album-artwork"
-import { Menu } from "@/components/ui/menu"
-import { PodcastEmptyPlaceholder } from "@/components/ui/podcast-empty-placeholder"
-import { Sidebar } from "@/components/ui/sidebar"
-import { listenNowAlbums, madeForYouAlbums } from "@/lib/albums"
-import { playlists } from "@/lib/playlists"
+} from "@/app/components/ui/shadcn/tabs"
+import { AlbumArtwork } from "@/app/components/ui/album-artwork"
+import { Menu } from "@/app/components/ui/menu"
+import { PodcastEmptyPlaceholder } from "@/app/components/ui/podcast-empty-placeholder"
+import { Sidebar } from "@/app/components/ui/sidebar"
+import { listenNowAlbums, madeForYouAlbums } from "@/app/lib/albums"
+import { playlists } from "@/app/lib/playlists"
 
 export const metadata: Metadata = {
   title: "Music App",
