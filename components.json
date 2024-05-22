@@ -6,13 +6,13 @@
   "tailwind": {
     "config": "tailwind.config.ts",
     "css": "app/globals.css",
-    "baseColor": "slate",
-    "cssVariables": false,
+    "baseColor": "zinc",
+    "cssVariables": true,
     "prefix": ""
   },
   "aliases": {
-    "components": "@/app/components",
-    "ui": "@/app/components/ui/shadcn",
+    "components": "@/app/ui",
+    "ui": "@/app/ui/shadcn",
     "utils": "@/app/lib/utils"
   }
 }
