@@ -4,6 +4,8 @@ import TopNav from "@/app/ui/home/top-nav"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/app/ui/shadcn/card"
 import { promises as fs } from "fs"
 import { Suspense } from "react"
+import Image from "next/image"
+import { Badge } from "@/app/ui/shadcn/badge"
 
 export default async function HomePage({
   searchParams
@@ -45,12 +47,19 @@ export default async function HomePage({
                       <CardDescription>{vehicle.model.description}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <img src={vehicle.thumbnail} alt={vehicle.model.name} />
+                      <Image src={vehicle.thumbnail} alt={vehicle.model.name} width={300} height={200} />
                       <p>{vehicle.reservation.costPerDay}</p>
+                      {vehicle.reservation.isAvailable
+                        ? <Badge>Available</Badge>
+                        : <Badge variant="secondary">Out of Stock</Badge>
+                      }
                     </CardContent>
                     <CardFooter className="flex justify-between">
                       <Button variant="outline">More Info</Button>
-                      <Button>Reserve</Button>
+                      {vehicle.reservation.isAvailable
+                        ? <Button>Reserve</Button>
+                        : <Button variant="secondary" disabled>Reserve</Button>
+                      }
                     </CardFooter>
                   </Card>
                 ))}

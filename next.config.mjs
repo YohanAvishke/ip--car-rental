@@ -5,6 +5,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "www.carlogos.org"
+      },
+      {
+        protocol: "https",
+        hostname: "classicthrottleshop.com"
       }
     ]
   }

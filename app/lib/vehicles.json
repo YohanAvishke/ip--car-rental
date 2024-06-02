@@ -44,9 +44,9 @@
     },
     "reservation": {
       "costPerDay": "AU$222,995",
-      "stockCount": 3,
-      "availableCount": 3,
-      "isAvailable": true,
+      "stockCount": 0,
+      "availableCount": 0,
+      "isAvailable": false,
       "temporaryReservationCount": 0
     },
     "brand": {
@@ -72,9 +72,9 @@
     },
     "reservation": {
       "costPerDay": "AU$119,995",
-      "stockCount": 3,
-      "availableCount": 3,
-      "isAvailable": true,
+      "stockCount": 0,
+      "availableCount": 0,
+      "isAvailable": false,
       "temporaryReservationCount": 0
     },
     "brand": {
