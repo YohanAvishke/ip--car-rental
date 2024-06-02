@@ -9,6 +9,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "classicthrottleshop.com"
+      },
+      {
+        protocol: "https",
+        hostname: "drive.google.com"
       }
     ]
   }

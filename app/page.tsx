@@ -6,15 +6,9 @@ import { promises as fs } from "fs"
 import { Suspense } from "react"
 import Image from "next/image"
 import { Badge } from "@/app/ui/shadcn/badge"
+import Link from "next/link"
 
-export default async function HomePage({
-  searchParams
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) {
+export default async function HomePage({ searchParams }: { searchParams?: { query?: string; }; }) {
   const query = searchParams?.query || ""
   const file = await fs.readFile(process.cwd() + "/app/lib/vehicles.json", "utf8")
   const vehicleData: Vehicle[] = JSON.parse(file)
@@ -41,12 +35,12 @@ export default async function HomePage({
                 vehicleData.filter(vehicle =>
                   vehicle.model.name.toLowerCase().includes(query.toLowerCase())
                 ).map(vehicle => (
-                  <Card key={vehicle.id} className="w-[350px] h-[500px] hover:bg-muted">
-                    <CardHeader>
+                  <Card key={vehicle.id} className="w-[350px] h-[510px] hover:bg-muted">
+                    <CardHeader className="h-[172px]">
                       <CardTitle>{vehicle.model.name}</CardTitle>
                       <CardDescription>{vehicle.model.description}</CardDescription>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="h-[282px]">
                       <Image src={vehicle.thumbnail} alt={vehicle.model.name} width={300} height={200} />
                       <p>{vehicle.reservation.costPerDay}</p>
                       {vehicle.reservation.isAvailable
@@ -57,7 +51,14 @@ export default async function HomePage({
                     <CardFooter className="flex justify-between">
                       <Button variant="outline">More Info</Button>
                       {vehicle.reservation.isAvailable
-                        ? <Button>Reserve</Button>
+                        ? <Link href={{
+                          pathname: "/reserve",
+                          query: {
+                            id: vehicle.id
+                          }
+                        }}>
+                          <Button>Reserve</Button>
+                        </Link>
                         : <Button variant="secondary" disabled>Reserve</Button>
                       }
                     </CardFooter>

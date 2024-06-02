@@ -45,7 +45,7 @@ export default function TopNav() {
           </div>
         </form>
       </div>
-      <Button className="ml-auto">Reserve</Button>
+      <Link href="/reserve"><Button className="ml-auto">Reserve</Button></Link>
     </header>
   )
 }
