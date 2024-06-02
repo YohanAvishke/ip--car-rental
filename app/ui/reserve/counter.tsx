@@ -1,9 +1,11 @@
 "use client"
 
 import { useState } from "react"
+import { Button } from "@/app/ui/shadcn/button"
+import { Minus, Plus } from "lucide-react"
 
 export default function Counter({ maxLimit }) {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
 
   const increment = () => {
     if (count < maxLimit) {
@@ -19,19 +21,13 @@ export default function Counter({ maxLimit }) {
 
   return (
     <>
-      <button
-        className="bg-red-500 text-white px-4 py-2 rounded-lg mr-4"
-        onClick={() => decrement()}
-      >
-        -
-      </button>
+      <Button variant="outline" onClick={() => decrement()}>
+        <Minus />
+      </Button>
       <span className="text-xl font-bold">{count}</span>
-      <button
-        className="bg-green-500 text-white px-4 py-2 rounded-lg ml-4"
-        onClick={() => increment()}
-      >
-        +
-      </button>
+      <Button onClick={() => increment()}>
+        <Plus />
+      </Button>
     </>
   )
 }

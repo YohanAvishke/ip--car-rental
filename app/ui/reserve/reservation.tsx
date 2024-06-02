@@ -28,11 +28,9 @@ export default async function Reservation({ vehicleID }) {
         </div>
         <Separator className="my-2" />
         <div className="flex-row gap-2 text-center">
-          <h1 className="text-xl font-bold">Reserving Amount</h1>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center gap-3">
             <Counter maxLimit={vehicle?.reservation.availableCount} />
           </div>
-          <p className="mt-4 text-gray-500">Max Limit: {vehicle?.reservation.availableCount}</p>
         </div>
       </div>
     </div>

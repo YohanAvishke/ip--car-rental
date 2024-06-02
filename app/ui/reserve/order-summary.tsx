@@ -1,16 +1,20 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/app/ui/shadcn/card"
 import { Button } from "@/app/ui/shadcn/button"
-import { Copy, CreditCard, MoreVertical, Truck } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "@/app/ui/shadcn/dropdown-menu"
+import { Copy, Truck } from "lucide-react"
 import { Separator } from "@/app/ui/shadcn/separator"
+import { promises as fs } from "fs"
 
-export default function OrderSummary() {
+export default async function OrderSummary({ vehicleID }) {
+  const file = await fs.readFile(process.cwd() + "/app/lib/vehicles.json", "utf8")
+  const vehicleData: Vehicle[] = JSON.parse(file)
+  const vehicle = vehicleData.find(vehicle => vehicle.id === Number(vehicleID))
+
+  const getFormattedDate = () => {
+    const date = new Date()
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return date.toLocaleDateString("en-US", options)
+  }
+
   return (
     <Card
       className="overflow-hidden" x-chunk="dashboard-05-chunk-4"
@@ -19,38 +23,13 @@ export default function OrderSummary() {
         <div className="grid gap-0.5">
           <CardTitle className="group flex items-center gap-2 text-lg">
             Order Oe31b70H
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-6 w-6 opacity-0 transition-opacity group-hover:opacity-100"
-            >
-              <Copy className="h-3 w-3" />
-              <span className="sr-only">Copy Order ID</span>
-            </Button>
           </CardTitle>
-          <CardDescription>Date: November 23, 2023</CardDescription>
+          <CardDescription>Date: {getFormattedDate()}</CardDescription>
         </div>
         <div className="ml-auto flex items-center gap-1">
           <Button size="sm" variant="outline" className="h-8 gap-1">
             <Truck className="h-3.5 w-3.5" />
-            <span className="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
-                      Track Order
-                    </span>
           </Button>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button size="icon" variant="outline" className="h-8 w-8">
-                <MoreVertical className="h-3.5 w-3.5" />
-                <span className="sr-only">More</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>Edit</DropdownMenuItem>
-              <DropdownMenuItem>Export</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Trash</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
       </CardHeader>
       <CardContent className="p-6 text-sm">
@@ -59,28 +38,24 @@ export default function OrderSummary() {
           <ul className="grid gap-3">
             <li className="flex items-center justify-between">
                       <span className="text-muted-foreground">
-                        Glimmer Lamps x <span>2</span>
+                        {vehicle?.model.name} x <span>2</span>
                       </span>
-              <span>$250.00</span>
+              <span>AU$ {Number(vehicle?.reservation.costPerDay.substring(3).replace(/,/g, "")) * 2}</span>
             </li>
           </ul>
           <Separator className="my-2" />
           <ul className="grid gap-3">
             <li className="flex items-center justify-between">
               <span className="text-muted-foreground">Subtotal</span>
-              <span>$299.00</span>
-            </li>
-            <li className="flex items-center justify-between">
-              <span className="text-muted-foreground">Shipping</span>
-              <span>$5.00</span>
+              <span>AU$ {Number(vehicle?.reservation.costPerDay.substring(3).replace(/,/g, "")) * 2}</span>
             </li>
             <li className="flex items-center justify-between">
               <span className="text-muted-foreground">Tax</span>
-              <span>$25.00</span>
+              <span>AU$ 25.00</span>
             </li>
             <li className="flex items-center justify-between font-semibold">
               <span className="text-muted-foreground">Total</span>
-              <span>$329.00</span>
+              <span>AU$ {Number(vehicle?.reservation.costPerDay.substring(3).replace(/,/g, "")) * 2 + 25}</span>
             </li>
           </ul>
         </div>
@@ -123,23 +98,10 @@ export default function OrderSummary() {
             </div>
           </dl>
         </div>
-        <Separator className="my-4" />
-        <div className="grid gap-3">
-          <div className="font-semibold">Payment Information</div>
-          <dl className="grid gap-3">
-            <div className="flex items-center justify-between">
-              <dt className="flex items-center gap-1 text-muted-foreground">
-                <CreditCard className="h-4 w-4" />
-                Visa
-              </dt>
-              <dd>**** **** **** 4532</dd>
-            </div>
-          </dl>
-        </div>
       </CardContent>
       <CardFooter className="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
         <div className="text-xs text-muted-foreground">
-          Updated <time dateTime="2023-11-23">November 23, 2023</time>
+          Updated <time dateTime="2023-11-23">{getFormattedDate()}</time>
         </div>
       </CardFooter>
     </Card>

@@ -15,7 +15,7 @@ export default function ReservePage({ searchParams }) {
       <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] lg:gap-6 lg:p-6">
         <Reservation vehicleID={searchParams.id} />
         <div>
-          <OrderSummary />
+          <OrderSummary vehicleID={searchParams.id} />
         </div>
       </div>
     </>
