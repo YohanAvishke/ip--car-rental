@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Volkswagen",
+    "image": "https://www.carlogos.org/car-logos/volkswagen-logo.png",
+    "carCount": 2
+  },
+  {
+    "id": 2,
+    "name": "Porsche",
+    "image": "https://www.carlogos.org/car-logos/porsche-logo.png",
+    "carCount": 18
+  },
+  {
+    "id": 3,
+    "name": "Aston Martin",
+    "image": "https://www.carlogos.org/car-logos/aston-martin-logo.png",
+    "carCount": 5
+  },
+  {
+    "id": 4,
+    "name": "Mercedes Benz",
+    "image": "https://www.carlogos.org/car-logos/mercedes-benz-logo.png",
+    "carCount": 5
+  },
+  {
+    "id": 5,
+    "name": "Ferrari",
+    "image": "https://www.carlogos.org/car-logos/ferrari-logo.png",
+    "carCount": 10
+  },
+  {
+    "id": 6,
+    "name": "Alfa Romeo",
+    "image": "https://www.carlogos.org/car-logos/alfa-romeo-logo.png",
+    "carCount": 2
+  },
+  {
+    "id": 7,
+    "name": "Jaguar",
+    "image": "https://www.carlogos.org/car-logos/jaguar-logo.png",
+    "carCount": 3
+  },
+  {
+    "id": 8,
+    "name": "HSV",
+    "image": "https://www.carlogos.org/car-logos/hsv-logo.png",
+    "carCount": 1
+  },
+  {
+    "id": 9,
+    "name": "Toyota",
+    "image": "https://www.carlogos.org/car-logos/toyota-logo.png",
+    "carCount": 2
+  },
+  {
+    "id": 10,
+    "name": "Holden",
+    "image": "https://www.carlogos.org/car-logos/holden-logo.png",
+    "carCount": 1
+  },
+  {
+    "id": 11,
+    "name": "Renault",
+    "image": "https://www.carlogos.org/car-logos/renault-logo.png",
+    "carCount": 1
+  },
+  {
+    "id": 12,
+    "name": "Bentley",
+    "image": "https://www.carlogos.org/car-logos/bentley-logo.png",
+    "carCount": 2
+  },
+  {
+    "id": 13,
+    "name": "Alpine",
+    "image": "https://www.carlogos.org/car-logos/alpine-logo.png",
+    "carCount": 1
+  },
+  {
+    "id": 14,
+    "name": "BMW",
+    "image": "https://www.carlogos.org/car-logos/bmw-logo.png",
+    "carCount": 1
+  }
+]

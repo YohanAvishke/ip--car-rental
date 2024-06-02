@@ -1,10 +1,6 @@
-import Link from "next/link"
+"use client"
+
 import {
-  HomeIcon,
-  ShoppingCart,
-  Package,
-  Users,
-  LineChart,
   Menu
 } from "lucide-react"
 import { Badge } from "@/app/ui/shadcn/badge"
@@ -14,47 +10,59 @@ import {
   SheetContent, SheetDescription, SheetHeader, SheetTitle,
   SheetTrigger
 } from "@/app/ui/shadcn/sheet"
+import Image from "next/image"
+import brands from "@/app/lib/brands.json"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useState } from "react"
 
-const Sidebar = () => (
-  <Sheet>
-    <SheetTrigger asChild>
-      {/*Open button*/}
-      <Button variant="outline" size="icon">
-        <Menu className="h-5 w-5" />
-      </Button>
-    </SheetTrigger>
-    <SheetContent side="left">
-      <SheetHeader>
-        <SheetTitle>Drive Easy</SheetTitle>
-        <SheetDescription>
-          Filter by car models
-        </SheetDescription>
-      </SheetHeader>
-      <div className="flex flex-col pt-10">
-        <Link href="#" className="flex items-center gap-4 py-2.5 hover:bg-muted">
-          <HomeIcon className="h-5 w-5" />
-          Dashboard
-        </Link>
-        <Link href="#" className="flex items-center gap-4 py-2.5 hover:bg-muted">
-          <ShoppingCart className="h-5 w-5" />
-          Orders
-          <Badge className="ml-auto flex h-6 w-6 items-center justify-center rounded-full">6</Badge>
-        </Link>
-        <Link href="#" className="flex items-center gap-4 py-2.5 hover:bg-muted">
-          <Package className="h-5 w-5" />
-          Products
-        </Link>
-        <Link href="#" className="flex items-center gap-4 py-2.5 hover:bg-muted">
-          <Users className="h-5 w-5" />
-          Customers
-        </Link>
-        <Link href="#" className="flex items-center gap-4 py-2.5 hover:bg-muted">
-          <LineChart className="h-5 w-5" />
-          Analytics
-        </Link>
-      </div>
-    </SheetContent>
-  </Sheet>
-)
+export default function SideNav() {
+  const [open, setOpen] = useState(false)
 
-export default Sidebar
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const { replace } = useRouter()
+
+  function handleBrandClick(term: string) {
+    const params = new URLSearchParams(searchParams)
+    if (term) {
+      params.set("query", term)
+    } else {
+      params.delete("query")
+    }
+    replace(`${pathname}?${params.toString()}`)
+  }
+
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <Button variant="outline" size="icon">
+          <Menu className="h-5 w-5" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="left">
+        <SheetHeader>
+          <SheetTitle>Drive Easy</SheetTitle>
+          <SheetDescription>
+            Filter by Vehicle Brands
+          </SheetDescription>
+        </SheetHeader>
+        <div className="flex flex-col pt-10">
+          {brands.map(brand => (
+            <div
+              key={brand.id}
+              className="flex items-center gap-4 py-2.5 hover:bg-muted"
+              onClick={() => {
+                setOpen(false)
+                handleBrandClick(brand.name)
+              }}
+            >
+              <Image src={brand.image} alt={brand.name} width={50} height={50} />
+              <p>{brand.name}</p>
+              <Badge className="ml-auto flex h-6 w-6 items-center justify-center rounded-full">{brand.carCount}</Badge>
+            </div>
+          ))}
+        </div>
+      </SheetContent>
+    </Sheet>
+  )
+}
